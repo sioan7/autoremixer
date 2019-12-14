@@ -1,14 +1,22 @@
 export const remixTypes = [
   {
     value: 'type1',
-    text: 'Type 1',
+    text: 'Pitch enhancer',
   },
   {
     value: 'type2',
-    text: 'Type 2',
+    text: 'Voice enhancer',
   },
   {
     value: 'type3',
-    text: 'Type 3',
+    text: 'Voice separator',
+  },
+  {
+    value: 'type4',
+    text: 'Bass remover',
+  },
+  {
+    value: 'type5',
+    text: 'Drunken',
   },
 ];

@@ -20,12 +20,12 @@ class Index(object):
             resp.body = f.read()
 
 class StaticResource(object):
-    def on_get(self, req, resp, type, filename):
+    def on_get(self, req, resp, filename):
         # do some sanity check on the filename
         resp.status = falcon.HTTP_200
         
         resp.content_type = ""
-        with open("static/" + filename, 'r') as f:
+        with open("static/" + filename, 'rb') as f:
             resp.body = f.read()
 
 class Remix(object):
@@ -36,8 +36,14 @@ class Remix(object):
             filename = processors.remix_type1(file.file, file.filename)
         elif type == "type2":
             filename = processors.remix_type2(file.file, file.filename)
-        else:
+        elif type == "type3":
             filename = processors.remix_type3(file.file, file.filename)
+        elif type == "type4":
+            filename = processors.remix_type4(file.file, file.filename)
+        elif type == "type5":
+            filename = processors.remix_type5(file.file, file.filename)
+        else:
+            filename = processors.remix_type6(file.file, file.filename)
 
         resp.status = falcon.HTTP_200
         resp.content_type = 'application/json'

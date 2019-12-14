@@ -14,13 +14,14 @@
     let bounce = '';
 
     function remix() {
+        remixedFilename = null;
         setTimeout(() => processing = true, 50);
         processRemix(selectedType, songData).then(response => {
             remixedFilename = response.filename;
             processing = false;
             bounce = 'bounce';
             setTimeout(() => bounce = '', 1500);
-        });
+        }).catch(() => processing = false);
     }
 
     function typeChange(event) {

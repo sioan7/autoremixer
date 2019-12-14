@@ -9,6 +9,14 @@
     }
 </script>
 
+<select class="type-selector" on:change={typeChange}>
+    {#each remixTypes as {value, text}}
+        <option class="selection" value="{value}">
+            {text}
+        </option>
+    {/each}
+</select>
+
 <style>
     .type-selector {
         height: fit-content;
@@ -23,12 +31,8 @@
     .type-selector:hover {
         background: rgb(117, 176, 149);
     }
-</style>
 
-<select class="type-selector" on:change={typeChange}>
-    {#each remixTypes as {value, text}}
-        <option class="selection" value="{value}">
-            {text}
-        </option>
-    {/each}
-</select>
+    .selection {
+        padding: 5px;
+    }
+</style>

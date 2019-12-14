@@ -19,20 +19,23 @@
     }
 </script>
 
-<div
-    class="dropzone"
-    on:dragover|preventDefault
-    on:drop|preventDefault={fileDropped}
-    on:click={openFile}
->
-    {#if file === null}
-        <span>Drop song here</span>
-        <span>⇕</span>
-        <span>Click to upload</span>
-    {:else}
-        <span class="filename">{file.name}</span>
-    {/if}
+<div class="dropzone-container {(file !== null) ? 'wide' : ''}">
+    <div
+        class="dropzone"
+        on:dragover|preventDefault
+        on:drop|preventDefault={fileDropped}
+        on:click={openFile}
+    >
+        {#if file === null}
+            <span>Drop song here</span>
+            <span>⇕</span>
+            <span>Click to upload</span>
+        {:else}
+            <span class="filename">{file.name}</span>
+        {/if}
+    </div>
 </div>
+
 <input
     id="fileInput"
     type="file"
@@ -41,8 +44,13 @@
 >
 
 <style>
-    .dropzone {
+    .dropzone-container {
         width: 500px;
+        transition: width linear 250ms;
+    }
+
+    .dropzone {
+        width: 100%;
         height: 300px;
         background-color: rgb(73, 147, 113);
 
@@ -57,22 +65,27 @@
         border-radius: 250px;
         border: 1px dashed rgb(0, 59, 32);
 
-        transition-property: border-radius, background-color, color;
-        transition-timing-function: linear;
+        transition-property: border-radius, background-color, color, width;
+        transition-timing-function: ease;
         transition-duration: 75ms;
     }
 
     .dropzone:hover {
         background: rgb(117, 176, 149);
         color: rgb(73, 147, 113);
-        border-radius: 50px;
+        /* border-radius: 50px; */
     }
 
     .filename {
-        width: 400px;
+        width: calc(100% - 100px);
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
+        text-align: center;
         color: rgb(235, 155, 47);
+    }
+
+    .wide {
+        width: 800px;
     }
 </style>
